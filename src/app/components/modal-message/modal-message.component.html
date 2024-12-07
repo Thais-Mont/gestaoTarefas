@@ -1,0 +1,8 @@
+<div *ngIf="show" class="modal-overlay">
+    <div class="modal">
+      <div [ngClass]="type === 'success' ? 'success-title' : 'error-title'">{{ title }}</div>
+      <p>{{ message }}</p>
+      <button (click)="onClose()" class="close-button">OK</button>
+    </div>
+  </div>
+  

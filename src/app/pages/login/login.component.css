@@ -1,14 +1,4 @@
-body {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-
-  .container {
+.logo-container {
     display: flex; 
     justify-content: center;
     align-items: center; 
@@ -23,29 +13,19 @@ body {
   }
   
   
-  .card {
+  .login-card {
     background-color: #fff;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   }
   
-  .title {
+  .login-title {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
   }
-
-h2 {
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
-  text-align: center;
-  margin-bottom: 20px;
-  padding: 10px;
-  letter-spacing: 1px; 
-}
-
+  
   .error-message {
     color: #f00;
     margin-bottom: 10px;
@@ -54,10 +34,6 @@ h2 {
   .form-group {
     margin-bottom: 15px;
   }
-
-  .input-group{
-    display: flex;
-  }
   
   .input-field {
     width: 100%;
@@ -65,14 +41,8 @@ h2 {
     border: 1px solid #ccc;
     border-radius: 5px;
   }
-
-  .toggle-password {
-    background-color: #fff;
-    cursor: pointer;
-    border: none;
-  }
   
-  .button {
+  .login-button {
     background-color: #00a896;
     color: #fff;
     padding: 10px 20px;
@@ -81,7 +51,7 @@ h2 {
     cursor: pointer;
   }
   
-  .footer {
+  .login-footer {
     text-align: center;
     margin-top: 20px;
   }

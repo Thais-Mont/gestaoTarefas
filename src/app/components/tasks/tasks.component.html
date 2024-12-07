@@ -1,0 +1,36 @@
+<table class="task-table">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Vencimento</th>
+      <th>Responsável</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks">
+      <td>{{ task.title }}</td>
+      <td>{{ task.dueDate | date: 'dd/MM/yyyy' }}</td>
+      <td>{{ task.responsibleName }}</td>
+      <td>
+        <select
+          [ngClass]="getStatusClass(task.status)"
+          [value]="task.status"
+          (change)="onStatusChange($event, task)"
+          class="status-select"
+        >
+          <option value="pending">Pendente</option>
+          <option value="inProgress">Em Progresso</option>
+          <option value="completed">Concluída</option>
+        </select>
+      </td>
+      
+      <td>
+        <button (click)="openConfirmModal(task.id!)" class="delete-button">Deletar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<app-confirm-modal *ngIf="showModal" (confirmed)="handleConfirmation($event)"></app-confirm-modal>

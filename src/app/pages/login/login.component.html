@@ -1,0 +1,42 @@
+<div class="login-container">
+  <div class="login-card">
+    <img src="assets/logo.png" alt="Logo" class="logo-image" />
+
+    <div *ngIf="errorMessage" class="error-message">
+      <p>{{ errorMessage }}</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" class="input-field" />
+      </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <div class="input-group">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            formControlName="password"
+            class="input-field"
+            placeholder="Senha"
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="togglePasswordVisibility('password')"
+            tabindex="-1"
+          >
+            <fa-icon [icon]="showPassword ? 'eye' : 'eye-slash'"></fa-icon>
+          </button>
+        </div>
+      </div>
+      <button type="submit" class="login-button">Login</button>
+    </form>
+
+    <div class="login-footer">
+      <a href="/forgot-password" class="forgot-password">Esqueceu sua senha?</a>
+      <p>Não tem uma conta? <a href="/register" class="create-account">Criar conta</a></p>
+    </div>
+  </div>
+</div>

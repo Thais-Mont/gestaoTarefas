@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="card">
+    <img src="assets/logo.png" alt="Logo" class="logo-image" />
+
+    <div *ngIf="errorMessage" class="error-message">
+      <p>{{ errorMessage }}</p>
+    </div>
+
+    <app-modal-message
+    [title]="modalType === 'success' ? 'Sucesso!' : 'Erro!'"
+    [message]="modalMessage"
+    [type]="modalType"
+    [show]="showModal"
+    (close)="showModal = false"
+  ></app-modal-message>
+  
+    <h2>Criar Conta</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+      <div class="form-group">
+        <label for="username">Nome</label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          class="input-field"
+          placeholder="Seu Nome"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="input-field"
+          placeholder="Email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <div class="input-group">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            formControlName="password"
+            class="input-field"
+            placeholder="Senha"
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="togglePasswordVisibility('password')"
+            tabindex="-1"
+          >
+            <fa-icon [icon]="showPassword ? 'eye' : 'eye-slash'"></fa-icon>
+          </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirmar Senha</label>
+        <div class="input-group">
+          <input
+            [type]="showConfirmPassword ? 'text' : 'password'"
+            id="confirmPassword"
+            formControlName="confirmPassword"
+            class="input-field"
+            placeholder="Confirmar Senha"
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="togglePasswordVisibility('confirmPassword')"
+            tabindex="-1"
+          >
+          <fa-icon [icon]="showConfirmPassword ? 'eye' : 'eye-slash'"></fa-icon>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="passwordsMismatch" class="error-message">
+        <p>As senhas precisam ser iguais!</p>
+      </div>
+      <button type="submit" class="button" >
+        Criar Conta
+      </button>
+    </form>
+
+    <div class="footer">
+      <a href="/forgot-password" class="forgot-password">Esqueceu sua senha?</a>
+    </div>
+    <div class="footer">
+      <a href="/login">Voltar para o Login</a>
+    </div>
+  </div>
+
+  
+  
+</div>

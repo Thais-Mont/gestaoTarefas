@@ -1,0 +1,16 @@
+<div class="container">
+    <button  (click)="logout()" class="logout-button">Sair</button>
+  
+    <div *ngIf="showAddTaskForm">
+      <app-add-task></app-add-task>
+    </div>
+  
+    <div *ngIf="!showAddTaskForm">
+      <app-tasks></app-tasks>
+    </div>
+  
+    <button (click)="toggleAddTaskForm()" class="button">
+      {{ showAddTaskForm ? 'Ver Tarefas' : 'Criar Tarefa' }}
+    </button>
+  </div>
+  

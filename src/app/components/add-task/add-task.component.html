@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="card">
+      <img src="assets/logo.png" alt="Logo" class="logo-image" />
+  
+      <div *ngIf="errorMessage" class="error-message">
+        <p>{{ errorMessage }}</p>
+      </div>
+  
+      <app-modal-message
+        [title]="modalType === 'success' ? 'Sucesso!' : 'Erro!'"
+        [message]="modalMessage"
+        [type]="modalType"
+        [show]="showModal"
+        (close)="showModal = false"
+      ></app-modal-message>
+      
+      <h2>Criar Tarefa</h2>
+  
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+        <div class="form-group">
+          <label for="title">Título da Tarefa</label>
+          <input
+            type="text"
+            id="title"
+            formControlName="title"
+            class="input-field"
+            placeholder="Digite o título da tarefa"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Descrição</label>
+          <textarea
+            id="description"
+            formControlName="description"
+            class="input-field"
+            placeholder="Descreva a tarefa"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="dueDate">Data de Vencimento</label>
+          <input
+            type="date"
+            id="dueDate"
+            formControlName="dueDate"
+            class="input-field"
+          />
+        </div>
+        <div class="form-group">
+          <label for="responsibleCpf">CPF do Responsável</label>
+          <input
+            type="text"
+            id="responsibleCpf"
+            formControlName="responsibleCpf"
+            class="input-field"
+            placeholder="Digite o CPF"
+          />
+        </div>
+        <div class="form-group">
+          <label for="responsibleEmail">Email do Responsável</label>
+          <input
+            type="email"
+            id="responsibleEmail"
+            formControlName="responsibleEmail"
+            class="input-field"
+            placeholder="Digite o Email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="responsibleName">Nome do Responsável</label>
+          <input
+            type="text"
+            id="responsibleName"
+            formControlName="responsibleName"
+            class="input-field"
+            placeholder="Digite o nome"
+          />
+        </div>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select
+            id="status"
+            formControlName="status"
+            class="input-field"
+          >
+            <option value="pending">Pendente</option>
+            <option value="inProgress">Em Progresso</option>
+            <option value="completed">Concluída</option>
+          </select>
+        </div>
+  
+        <button type="submit" class="button">Salvar Tarefa</button>
+      </form>
+  
+      <div class="footer">
+        <a href="/tasks" class="link">Ver Tarefas</a>
+      </div>
+    </div>
+  </div>
+  

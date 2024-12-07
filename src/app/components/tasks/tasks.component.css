@@ -1,0 +1,107 @@
+/* Tabela */
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Cabeçalhos da tabela */
+  .task-table th {
+    background-color: #f5f5f5;
+    color: #333;
+    text-align: left;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 2px solid #ddd;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* Células da tabela */
+  .task-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    color: #555;
+  }
+  
+  .task-table tr:hover {
+    background-color: #fafafa;
+  }
+  
+  /* Estilo para as linhas da tabela */
+  .task-table tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  .task-table tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+  
+  /* Status */
+  .task-table .status-select {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    color: #333;
+    padding: 8px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  /* Cores para os status */
+  .task-table .pending {
+    color: #e74c3c; /* Vermelho */
+  }
+  
+  .task-table .inProgress {
+    color: #f39c12; /* Laranja */
+  }
+  
+  .task-table .completed {
+    color: #2ecc71; /* Verde */
+  }
+  
+  /* Botões de ação */
+  .task-table .delete-button {
+    background-color: transparent;
+    color: #e74c3c;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  
+  .task-table .delete-button:hover {
+    color: #c0392b;
+  }
+  
+  /* Checkbox */
+  .task-table input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: #2ecc71; /* Cor verde para o checkbox */
+    cursor: pointer;
+  }
+  
+  .task-table .checkbox-label {
+    display: inline-block;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  /* Tabela em dispositivos móveis */
+  @media (max-width: 768px) {
+    .task-table {
+      font-size: 14px;
+    }
+  
+    .task-table th, .task-table td {
+      padding: 10px;
+    }
+  }
+  
