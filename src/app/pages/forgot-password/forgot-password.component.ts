@@ -27,7 +27,6 @@ export class ForgotPasswordComponent {
 
     onForgotPassword(): void {
         const rawForm = this.form.getRawValue();
-        console.log(rawForm.email);
         if (rawForm.email) {
             this.errorMessage = null;
             this.authService.forgotPassword(rawForm.email).subscribe({

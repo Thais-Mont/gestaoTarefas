@@ -1,4 +1,4 @@
-<div class="login-container">
+<div class="container">
   <div class="login-card">
     <img src="assets/logo.png" alt="Logo" class="logo-image" />
 
@@ -6,7 +6,7 @@
       <p>{{ errorMessage }}</p>
     </div>
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" formControlName="email" class="input-field" />
@@ -31,10 +31,10 @@
           </button>
         </div>
       </div>
-      <button type="submit" class="login-button">Login</button>
+      <button type="submit" class="button">Login</button>
     </form>
 
-    <div class="login-footer">
+    <div class="footer">
       <a href="/forgot-password" class="forgot-password">Esqueceu sua senha?</a>
       <p>Não tem uma conta? <a href="/register" class="create-account">Criar conta</a></p>
     </div>

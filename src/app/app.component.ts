@@ -1,33 +1,34 @@
 import { AuthService } from './services/auth.service';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { NavbarComponent } from "./components/navbar/navbar.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, RouterLink],
+  imports: [CommonModule, RouterOutlet, NavbarComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  AuthService = inject(AuthService);
+  authService = inject(AuthService);
   router = inject(Router);
- ngOnInit(): void {
-    this.AuthService.user$.subscribe((user) => {
-      if (user) {
-        this.AuthService.currentUserSig.set({
-          email: user.email!,
-          username: user.displayName!,
-        });
-      } else {
-        this.AuthService.currentUserSig.set(null);
+  isLoggedIn = signal(false);
+  isLoginRoute = false;
+
+  constructor() {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const hiddenRoutes = ['/login', '/register', '/forgot-password'];
+        this.isLoginRoute = hiddenRoutes.includes(event.url);
       }
     });
- };
+    
+  }
 
-  logout() {
-    this.AuthService.logout();
-    this.router.navigateByUrl('/login');
+  ngOnInit(): void {
+    this.authService.user$.subscribe((user) => {
+      this.isLoggedIn.set(!!user); 
+    });
   }
 }

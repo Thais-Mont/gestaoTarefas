@@ -1,107 +1,89 @@
-/* Tabela */
-.task-table {
+table {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.task-filter-bar {
+display: flex;
+ width: 100%;
+ justify-content: space-between;
+}
+
+.form-data{
+  display: flex;
+  align-items: self-start;
+}
+
+@media (max-width: 480px) {
+  .task-filter-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
-  
-  /* Cabeçalhos da tabela */
-  .task-table th {
-    background-color: #f5f5f5;
-    color: #333;
-    text-align: left;
-    padding: 15px;
-    font-size: 16px;
-    font-weight: 600;
-    border-bottom: 2px solid #ddd;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
-  /* Células da tabela */
-  .task-table td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #eee;
-    color: #555;
-  }
-  
-  .task-table tr:hover {
-    background-color: #fafafa;
-  }
-  
-  /* Estilo para as linhas da tabela */
-  .task-table tr:nth-child(odd) {
-    background-color: #f9f9f9;
-  }
-  
-  .task-table tr:nth-child(even) {
-    background-color: #ffffff;
-  }
-  
-  /* Status */
-  .task-table .status-select {
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    color: #333;
-    padding: 8px;
-    border-radius: 4px;
+
+  .mat-form-field {
     width: 100%;
     font-size: 14px;
-    cursor: pointer;
   }
-  
-  /* Cores para os status */
-  .task-table .pending {
-    color: #e74c3c; /* Vermelho */
+
+  .search-field .mat-form-field-infix,
+  .mat-select-trigger {
+    padding: 6px 8px;
   }
-  
-  .task-table .inProgress {
-    color: #f39c12; /* Laranja */
+
+  .mat-input-element {
+    font-size: 14px;
+    padding: 2px;
   }
-  
-  .task-table .completed {
-    color: #2ecc71; /* Verde */
+
+  .mat-datepicker-toggle,
+  .mat-select-trigger {
+    padding: 6px;
   }
-  
-  /* Botões de ação */
-  .task-table .delete-button {
-    background-color: transparent;
-    color: #e74c3c;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: color 0.3s;
+
+  .mat-button-wrapper {
+    font-size: 14px;
   }
-  
-  .task-table .delete-button:hover {
-    color: #c0392b;
+
+  .task-table-container {
+    margin-top: 20px;
   }
-  
-  /* Checkbox */
-  .task-table input[type="checkbox"] {
-    margin-right: 10px;
-    accent-color: #2ecc71; /* Cor verde para o checkbox */
-    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  table {
+    max-width: 320px;
+    table-layout: fixed; 
+    overflow-x: auto; 
+    display: block;
   }
-  
-  .task-table .checkbox-label {
-    display: inline-block;
-    font-weight: 600;
-    color: #333;
-    cursor: pointer;
+
+  .mat-header-cell,
+  .mat-cell {
+    padding: 8px 4px;
+    font-size: 12px; 
   }
-  
-  /* Tabela em dispositivos móveis */
-  @media (max-width: 768px) {
-    .task-table {
-      font-size: 14px;
-    }
-  
-    .task-table th, .task-table td {
-      padding: 10px;
-    }
+
+  .mat-column-title {
+    width: 30%;
   }
-  
+
+  .mat-column-dueDate {
+    width: 20%;
+  }
+
+  .mat-column-responsible {
+    width: 25%;
+  }
+
+  .mat-column-status {
+    width: 15%;
+  }
+
+  .mat-column-actions {
+    width: 10%;
+  }
+}
+

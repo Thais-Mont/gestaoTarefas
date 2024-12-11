@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="header">
+    <h1>Estatísticas das Tarefas</h1>
+    <p>Visualize o status das suas tarefas de forma  simples.</p>
+  </div>
+
+  <mat-form-field class="date-range-field" appearance="outline">
+    <mat-label>Selecione um Período</mat-label>
+    <mat-date-range-input [rangePicker]="rangePicker" #dateRangeInput>
+      <input matStartDate placeholder="Data Inicial" [formControl]="startDate" />
+      <input matEndDate placeholder="Data Final" [formControl]="endDate" />
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+    <mat-date-range-picker #rangePicker>
+      <mat-date-range-picker-actions>
+        <button mat-button matDateRangePickerCancel>Cancelar</button>
+        <button mat-raised-button matDateRangePickerApply (click)="onDateRangeApply(dateRangeInput)">Aplicar</button>
+      </mat-date-range-picker-actions>
+    </mat-date-range-picker>
+  </mat-form-field>
+
+  <div class="chart-container" *ngIf="chartData.length > 0; else noData">
+    <ngx-charts-advanced-pie-chart
+      [view]="[400, 400]"
+      [results]="chartData"
+      [gradient]="true"
+      [scheme]="colorScheme"
+    ></ngx-charts-advanced-pie-chart>
+
+
+  </div>
+
+  <ng-template #noData>
+    <p class="no-data">Nenhum dado disponível para o período selecionado.</p>
+  </ng-template>
+</div>

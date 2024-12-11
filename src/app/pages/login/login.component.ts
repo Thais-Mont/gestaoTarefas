@@ -12,7 +12,6 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './login.component.html',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, FontAwesomeModule,],
-  styleUrls: ['./login.component.css']
 })
 export class LogicComponent {
   fb = inject(FormBuilder);
@@ -50,7 +49,6 @@ export class LogicComponent {
       this.authService.login(rawForm.email, rawForm.password).subscribe({
         next: () => {
           this.router.navigateByUrl('/home');
-          console.log("loggin feito com sucesso")
         },
         error: (error) => {
           this.errorMessage = this.handleAuthError(error.code);

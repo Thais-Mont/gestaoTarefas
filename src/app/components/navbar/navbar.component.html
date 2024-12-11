@@ -1,11 +1,21 @@
+<mat-toolbar class="header" >
+  <div class="nav-container">
+    <span class="logo" style="cursor: pointer;" (click)="goToTasks()" >TaskUP!</span>
 
-<nav class="navbar">
-    <img src="assets/logo.png" alt="Logo" class="logo" />
-  
-    <div class="greeting">
-      <span>Olá, Fulano</span> 
+    <div class="nav-buttons">
+      <button mat-button (click)="goToTasks()" class="button" >Lista de Tarefas</button>
+      <button mat-button (click)="goToStatistics()" class="button">Estatísticas</button>
+      <button mat-button (click)="logout()" class="button">Sair</button>
     </div>
-  
-    <button class="logout-button" (click)="logout()">Logout</button>
-  </nav>
-  
+
+    <button mat-icon-button class="menu-icon" (click)="toggleMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <div *ngIf="menuOpen" class="responsive-menu">
+    <button mat-button (click)="goToTasks(); toggleMenu()">Lista de Tarefas</button>
+    <button mat-button (click)="goToStatistics(); toggleMenu()">Estatísticas</button>
+    <button mat-button (click)="logout(); toggleMenu()">Sair</button>
+  </div>
+</mat-toolbar>

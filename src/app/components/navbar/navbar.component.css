@@ -1,36 +1,73 @@
-/* navbar.component.css */
-.navbar {
+.header {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px;
+  width: 100%;
+  background-color: #00a896;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.button {
+  color: #fff !important;
+}
+
+.menu-icon {
+  display: none;
+  color: white;
+}
+
+.responsive-menu {
+  display: none;
+  flex-direction: column;
+  background-color: #00a896;
+  padding: 8px 0;
+  border-radius: 4px;
+}
+
+.responsive-menu button {
+  text-align: left;
+  width: 100%;
+  font-size: 1rem;
+  padding: 10px 16px;
+  color: #fff;
+  border: none;
+  background: none;
+}
+
+.responsive-menu button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .nav-buttons {
+    display: none;
+  }
+
+  .menu-icon {
     display: flex;
-    justify-content: space-between;  /* Alinha logo, saudação e botão de logout */
-    align-items: center;
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000; /* Fixa o navbar no topo */
   }
-  
-  .navbar .logo {
-    height: 40px; /* Ajuste a altura conforme necessário */
+
+  .responsive-menu {
+    display: flex;
+    width: 100%;
+    z-index: 9999;
   }
-  
-  .navbar .greeting {
-    font-size: 18px;
-  }
-  
-  .navbar .logout-button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .navbar .logout-button:hover {
-    background-color: #c82333;
-  }
-  
+}

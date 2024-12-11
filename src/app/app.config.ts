@@ -6,15 +6,9 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCuPf6Hy4Q3r4Nb8evTWgh_PUC34ja_qOw",
-  authDomain: "gestaotarefas-129b1.firebaseapp.com",
-  projectId: "gestaotarefas-129b1",
-  storageBucket: "gestaotarefas-129b1.firebasestorage.app",
-  messagingSenderId: "893762163022",
-  appId: "1:893762163022:web:c7320f2a67bf98c5ddce1f"
-}; 
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { firebaseConfig } from './environments/environment';
 
 
 export const appConfig: ApplicationConfig = {
@@ -25,5 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideAnimations(),
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-br' } 
   ],
 };

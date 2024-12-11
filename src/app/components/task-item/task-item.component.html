@@ -1,9 +1,58 @@
-<div class="task"
-    (dblclick)="onToggle(tarefa)"
-    [ngClass]="{reminder: tarefa.status}"
->
-    <!-- <h3>{{tarefa.tarefa}}
-        <fa-icon [icon]="faTimes" [ngStyle]="{'color': 'red'}" (click)="onDelete(tarefa)" ></fa-icon>
-    </h3> -->
-    <p>{{tarefa.description}}</p>
-</div>
+<div class="task-detail-modal" *ngIf="task">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button mat-icon-button (click)="close.emit()" class="close-button">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+  
+      <h2>Detalhes da Tarefa</h2>
+  
+      <div class="task-details">
+        <div class="task-info">
+          <div class="task-info-item">
+            <p class="info-titulo">Título:</p>
+            <p>{{ task?.title }}</p>
+          </div>
+  
+          <div class="task-info-item">
+            <p class="info-titulo">Descrição:</p>
+            <p>{{ task?.description }}</p>
+          </div>
+  
+          <div class="task-info-item">
+            <p class="info-titulo">Responsável:</p>
+            <p>{{ task?.responsibleName }}</p>
+          </div>
+  
+          <div class="task-info-item">
+            <p class="info-titulo">CPF:</p>
+            <p>{{ task?.responsibleCpf }}</p>
+          </div>
+  
+          <div class="task-info-item">
+            <p class="info-titulo">Email:</p>
+            <p>{{ task?.responsibleEmail }}</p>
+          </div>
+  
+          <div class="task-info-item">
+            <p class="info-titulo">Vencimento:</p>
+            <p>{{ task?.dueDate | date: 'dd/MM/yyyy' }}</p>
+          </div>
+        </div>
+  
+        <div>
+          <mat-form-field appearance="outline" class="status-field">
+            <mat-label>Status</mat-label>
+            <mat-select (selectionChange)="getStatusClass($event.value)">
+              <mat-option value="pending">Pendente</mat-option>
+              <mat-option value="inProgress">Em Progresso</mat-option>
+              <mat-option value="completed">Concluída</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  

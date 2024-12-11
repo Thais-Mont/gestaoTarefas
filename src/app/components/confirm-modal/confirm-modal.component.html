@@ -1,8 +1,14 @@
-<div class="modal">
-    <div class="modal-content">
-      <h3>Tem certeza que deseja excluir esta tarefa?</h3>
-      <button (click)="closeModal(true)" class="confirm-btn">Sim</button>
-      <button (click)="closeModal(false)" class="cancel-btn">Não</button>
-    </div>
-  </div>
-  
+
+<div class="dialog-content">
+  <mat-dialog-content >
+    <div class="modal-title">Tem certeza que deseja excluir esta tarefa?</div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="closeModal(true)" class="confirm-btn">Sim</button>
+    <button mat-button (click)="closeModal(false)" cdkFocusInitial class="cancel-btn">Não</button>
+  </mat-dialog-actions>
+</div>
+
+
+

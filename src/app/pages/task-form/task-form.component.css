@@ -1,0 +1,28 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 16px;
+  }
+  
+  .header-container {
+    display: flex;
+    width: 100%; 
+    margin-bottom: 16px; 
+    justify-content: flex-end;
+  }
+  
+  .home-button {
+    background-color: #00a896;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  .home-button:hover {
+    background-color: #054a43;
+  }

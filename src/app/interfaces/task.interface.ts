@@ -2,7 +2,7 @@ export interface TaskInterface {
     id?: string;
     title: string;              
     description: string;         
-    dueDate: string;             // Data de vencimento (ISO format, e.g., 'YYYY-MM-DD')
+    dueDate: string;           
     responsibleCpf: string;     
     responsibleEmail: string;    
     responsibleName: string;    

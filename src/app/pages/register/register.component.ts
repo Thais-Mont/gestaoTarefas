@@ -108,14 +108,12 @@ export class RegisterComponent {
   
 
   onSubmit(): void {
-    console.log(this.form);
     if (this.form.invalid) {
       this.errorMessage = this.getValidationMessages();
       return;
     }
   
     const rawForm = this.form.getRawValue();
-    console.log(rawForm);
     this.authService
       .register(rawForm.email, rawForm.username, rawForm.password)
       .subscribe({
