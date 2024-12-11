@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,7 +17,6 @@ import { ModalMessageComponent } from '../../components/modal-message/modal-mess
 export class RegisterComponent {
 
   fb = inject(FormBuilder);
-  http = inject(HttpClient);
   authService = inject(AuthService);
   router = inject(Router);
   showPassword = false;
