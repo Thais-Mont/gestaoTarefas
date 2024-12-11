@@ -27,6 +27,18 @@ export class AuthService {
     });
   }
   
+  private userSubscription = this.user$.subscribe((user) => {
+    this.currentUserSig.set(user ? {
+      uid: user.uid,
+      email: user.email || '',
+      username: user.displayName || ''
+    } : null);
+  });
+  
+  ngOnDestroy() {
+    this.userSubscription.unsubscribe();
+  }
+  
 
   register(email: string, username: string, password: string): Observable<void> {
     const promise = createUserWithEmailAndPassword(this.firebaseAuth, email, password)

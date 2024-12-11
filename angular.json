@@ -13,9 +13,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "optimization": false,
+            "budgets": [
+              { "type": "initial", "maximumWarning": "500kb", "maximumError": "1mb" },
+              { "type": "anyComponentStyle", "maximumWarning": "2kb", "maximumError": "4kb" }
+            ],
             "outputPath": "dist/gestao-tarefas",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "sourceMap": false,
             "polyfills": [
               "zone.js"
             ],
@@ -31,9 +37,6 @@
             "scripts": [],
             "server": "src/main.server.ts",
             "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
           },
           "configurations": {
             "production": {

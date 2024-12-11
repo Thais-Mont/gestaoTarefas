@@ -1,17 +1,19 @@
 import { inject, Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { from, Observable, of, throwError } from 'rxjs';
 import { TaskInterface } from '../interfaces/task.interface';
 import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, updateDoc, query, where, docData, Query, getDocs } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
-import { switchMap, catchError } from 'rxjs/operators';
+import { switchMap, catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  private collectionName = 'tasks';
-  private firestore = inject(Firestore);
-  private authService = inject(AuthService);
+
+  constructor(
+    private firestore: Firestore,
+    private authService: AuthService
+  ) {}
 
   private getCurrentUserUid(): Observable<string | null> {
     return this.authService.user$.pipe(
@@ -54,19 +56,21 @@ export class TaskService {
 
   addTask(task: TaskInterface): Observable<void> {
     return this.getUserTasksCollection().pipe(
-      switchMap(async tasksCollection => {
-        if (!tasksCollection) throw new Error('Coleção de tarefas não encontrada');
-        try {
-          await addDoc(tasksCollection, task);
-        } catch (error) {
-          throw error;
+      switchMap(tasksCollection => {
+        if (!tasksCollection) {
+          return throwError(() => new Error('Coleção de tarefas não encontrada'));
         }
+        return from(addDoc(tasksCollection, task)).pipe(
+          map(() => void 0) 
+        );
       }),
       catchError(error => {
-        return of(void 0);
+        console.error('Erro ao adicionar tarefa:', error);
+        return of(void 0); 
       })
     );
   }
+  
 
   updateTask(task: TaskInterface): Observable<void> {
     return this.getCurrentUserUid().pipe(
