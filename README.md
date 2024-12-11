@@ -37,3 +37,6 @@ npm install
 
 ###  Executar localmente
 ng serve
+
+###  Executar localmente
+http://localhost:4200/
