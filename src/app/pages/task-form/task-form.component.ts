@@ -24,7 +24,6 @@ export class TaskFormComponent {
     this.taskId = this.route.snapshot.paramMap.get('id');
     if (this.taskId) {
       this.taskService.getTaskById(this.taskId).subscribe(task => {
-        console.log(task)
         if (task) {
           this.selectedTask = task;
         }

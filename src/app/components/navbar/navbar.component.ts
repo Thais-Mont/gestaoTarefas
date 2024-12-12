@@ -21,7 +21,6 @@ export class NavbarComponent {
   isLoggedIn = signal(false);
   menuOpen = false;
 
-
   constructor(private authService: AuthService) {
     this.authService.user$.subscribe(user => {
       this.isLoggedIn.set(!!user);
@@ -44,7 +43,6 @@ export class NavbarComponent {
   logout() {
     this.authService.logout().subscribe({
       next: () => {
-        this.authService.currentUserSig.set(null);
         this.isLoggedIn.set(false);
         this.router.navigateByUrl('/login');
       },
@@ -53,8 +51,4 @@ export class NavbarComponent {
       }
     });
   }
-  
-  
 }
-
-

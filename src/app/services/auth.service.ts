@@ -1,50 +1,43 @@
 import { UserInterface } from './../interfaces/user.interface';
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, user } from '@angular/fire/auth';
-import { sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
-import { from, Observable } from 'rxjs';
+import { sendPasswordResetEmail, signInWithEmailAndPassword, signOut, updateProfile, UserCredential } from 'firebase/auth';
+import { BehaviorSubject, from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  firebaseAuth = inject(Auth);
-  user$ = user(this.firebaseAuth);
-  currentUserSig = signal<UserInterface | null | undefined>(undefined); 
 
+export class AuthService implements OnDestroy {
 
-  constructor() {
+  private userSubscription: any;
+
+  constructor(private firebaseAuth: Auth) {
     this.initUserState();
   }
-  
+
+  user$ = user(this.firebaseAuth);
+  currentUserSig = new BehaviorSubject<UserInterface | null | undefined>(undefined);
+
   private initUserState() {
-    this.user$.subscribe((user) => {
-      this.currentUserSig.set(user ? {
+    this.userSubscription = this.user$.subscribe((user) => {
+      this.currentUserSig.next(user ? {
         uid: user.uid,
         email: user.email || '',
         username: user.displayName || ''
       } : null);
     });
   }
-  
-  private userSubscription = this.user$.subscribe((user) => {
-    this.currentUserSig.set(user ? {
-      uid: user.uid,
-      email: user.email || '',
-      username: user.displayName || ''
-    } : null);
-  });
-  
+
   ngOnDestroy() {
-    this.userSubscription.unsubscribe();
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
-  
 
   register(email: string, username: string, password: string): Observable<void> {
     const promise = createUserWithEmailAndPassword(this.firebaseAuth, email, password)
-      .then((response) => {
-        return updateProfile(response.user, { displayName: username });
-      })
+      .then((response) => updateProfile(response.user, { displayName: username }))
       .catch((error) => {
         console.error('Error during registration:', error);
         throw error;
@@ -52,19 +45,16 @@ export class AuthService {
     return from(promise);
   }
 
-  login(email: string, password: string): Observable<void> {
-    const promise = signInWithEmailAndPassword(this.firebaseAuth, email, password).then((response) => {
-    });
+  login(email: string, password: string): Observable<UserCredential> {
+    const promise = signInWithEmailAndPassword(this.firebaseAuth, email, password);
     return from(promise);
   }
 
   forgotPassword(email: string): Observable<void> {
-    const promise = sendPasswordResetEmail(this.firebaseAuth, email)
-      .then()
-      .catch((error) => {
-        console.error('Error sending password reset email:', error);
-        throw error;
-      });
+    const promise = sendPasswordResetEmail(this.firebaseAuth, email).catch((error) => {
+      console.error('Error sending password reset email:', error);
+      throw error;
+    });
     return from(promise);
   }
 
@@ -74,8 +64,7 @@ export class AuthService {
   }
 
   get currentUserUid(): string | null {
-    return this.currentUserSig()?.uid ?? null;
+    return this.currentUserSig.value?.uid ?? null;
   }
-  
   
 }

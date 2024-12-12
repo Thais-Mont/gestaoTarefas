@@ -23,5 +23,20 @@
 
 ## Como Rodar o Projeto
 
-### Passo 1: Clonar o Repositório
 
+
+```bash
+###  Clonar o Repositório
+git clone https://github.com/Thais-Mont/gestaoTarefas.git 
+
+###  Acessar o diretório do projeto
+cd gestaoTarefas
+
+###  Instalar as dependências
+npm install
+
+###  Executar localmente
+ng serve
+
+###  Executar localmente
+http://localhost:4200/
